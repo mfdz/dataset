@@ -31,13 +31,11 @@ var (
 func NewCBORReader(st *dataset.Structure, r io.Reader) (*CBORReader, error) {
 	if st.Schema == nil {
 		err := fmt.Errorf("schema required for CBOR reader")
-		log.Debug(err.Error())
 		return nil, err
 	}
 
 	tlt, err := GetTopLevelType(st)
 	if err != nil {
-		log.Debug(err.Error())
 		return nil, err
 	}
 

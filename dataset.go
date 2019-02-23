@@ -74,6 +74,8 @@ type Dataset struct {
 	// Qri is a key for both identifying this document type, and versioning the
 	// dataset document definition itself.
 	Qri string `json:"qri"`
+	// Status is an optional set of statistical metadata derived from the body
+	Stats interface{} `json:"stats,omitempty"`
 	// Structure of this dataset
 	Structure *Structure `json:"structure,omitempty"`
 	// Transform is a path to the transformation that generated this resource

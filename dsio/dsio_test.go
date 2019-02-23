@@ -46,3 +46,13 @@ func TestNewEntryWriter(t *testing.T) {
 		}
 	}
 }
+
+func TestReadAll(t *testing.T) {
+	r, err := NewIdentityReader(&dataset.Structure{Format: "native", Schema: dataset.BaseSchemaArray}, []interface{}{"a"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, err := ReadAll(r); err != nil {
+		t.Error(err)
+	}
+}

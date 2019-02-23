@@ -107,3 +107,21 @@ func GetTopLevelType(st *dataset.Structure) (string, error) {
 	}
 	return tlt, nil
 }
+
+// ReadAll consumes all reader entries
+func ReadAll(r EntryReader) (ents []Entry, err error) {
+	var ent Entry
+	defer r.Close()
+	for {
+		ent, err = r.ReadEntry()
+		if err != nil {
+			if err.Error() == "EOF" {
+				err = nil
+				break
+			}
+			return
+		}
+		ents = append(ents, ent)
+	}
+	return
+}
