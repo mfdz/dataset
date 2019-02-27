@@ -14,6 +14,7 @@ import (
 	"github.com/multiformats/go-multihash"
 	"github.com/qri-io/dataset"
 	"github.com/qri-io/dataset/dsio"
+	"github.com/qri-io/dataset/dsio/stats"
 	"github.com/qri-io/dataset/validate"
 	"github.com/qri-io/dsdiff"
 	"github.com/qri-io/qfs"
@@ -337,6 +338,15 @@ func setDepthAndEntryCount(ds *dataset.Dataset, data qfs.File, mu *sync.Mutex, d
 		return
 	}
 
+	// wrap in in a stats reader to generate stats
+	stats, err := stats.NewBasicStatsGenerator(er)
+	if err != nil {
+		log.Debug(err.Error())
+		done <- fmt.Errorf("error creating stats generator: %s", err.Error())
+		return
+	}
+	er = stats
+
 	entries := 0
 	// baseline of 1 for the original closure
 	depth := 1
@@ -356,8 +366,13 @@ func setDepthAndEntryCount(ds *dataset.Dataset, data qfs.File, mu *sync.Mutex, d
 		done <- fmt.Errorf("error reading values at entry %d: %s", entries, err.Error())
 		return
 	}
+	if err := er.Close(); err != nil {
+		done <- fmt.Errorf("closing entry reader: %s", err.Error())
+		return
+	}
 
 	mu.Lock()
+	ds.Stats = stats.Stats()
 	ds.Structure.Entries = entries
 	ds.Structure.Depth = depth
 	mu.Unlock()

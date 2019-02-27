@@ -30,29 +30,24 @@ func TestBasicStatsReader(t *testing.T) {
 		]`,
 		map[string]interface{}{
 			"int": map[string]interface{}{
-				"type":  "integer",
 				"count": 5,
 				"min":   float64(1),
 				"max":   float64(5),
 			},
 			"float": map[string]interface{}{
-				"type":  "number",
 				"count": 5,
 				"min":   float64(1.1),
 				"max":   float64(5.5),
 			},
 			"nil": map[string]interface{}{
-				"type":  "null",
 				"count": 5,
 			},
 			"bool": map[string]interface{}{
-				"type":       "boolean",
 				"count":      5,
 				"trueCount":  2,
 				"falseCount": 3,
 			},
 			"string": map[string]interface{}{
-				"type":      "string",
 				"count":     5,
 				"minLength": 1,
 				"maxLength": 5,
@@ -72,29 +67,24 @@ func TestBasicStatsReader(t *testing.T) {
 		}`,
 		[]interface{}{
 			map[string]interface{}{
-				"type":  "integer",
 				"count": 5,
 				"min":   float64(1),
 				"max":   float64(5),
 			},
 			map[string]interface{}{
-				"type":  "number",
 				"count": 5,
 				"min":   float64(1.1),
 				"max":   float64(5.5),
 			},
 			map[string]interface{}{
-				"type":  "null",
 				"count": 5,
 			},
 			map[string]interface{}{
-				"type":       "boolean",
 				"count":      5,
 				"trueCount":  2,
 				"falseCount": 3,
 			},
 			map[string]interface{}{
-				"type":      "string",
 				"count":     5,
 				"minLength": 1,
 				"maxLength": 5,

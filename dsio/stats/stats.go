@@ -187,10 +187,9 @@ func (nsg *numericStatGenerator) Stats() interface{} {
 	if nsg.count == 0 {
 		// avoid reporting default max/min figures, if count is above 0
 		// at least one entry has been checked
-		return map[string]interface{}{"type": nsg.typ, "count": 0}
+		return map[string]interface{}{"count": 0}
 	}
 	return map[string]interface{}{
-		"type":  nsg.typ,
 		"count": nsg.count,
 		"min":   nsg.min,
 		"max":   nsg.max,
@@ -223,10 +222,9 @@ func (ssg *stringStatGenerator) Stats() interface{} {
 	if ssg.count == 0 {
 		// avoid reporting default max/min figures, if count is above 0
 		// at least one entry has been checked
-		return map[string]interface{}{"type": "string", "count": 0}
+		return map[string]interface{}{"count": 0}
 	}
 	return map[string]interface{}{
-		"type":      "string",
 		"count":     ssg.count,
 		"minLength": ssg.minLength,
 		"maxLength": ssg.maxLength,
@@ -256,7 +254,6 @@ func (bsg *boolStatGenerator) AddEntry(e dsio.Entry) {
 
 func (bsg *boolStatGenerator) Stats() interface{} {
 	return map[string]interface{}{
-		"type":       "boolean",
 		"count":      bsg.count,
 		"trueCount":  bsg.trueCount,
 		"falseCount": bsg.falseCount,
@@ -277,6 +274,6 @@ func (nsg *nullStatGenerator) AddEntry(e dsio.Entry) {
 	}
 }
 func (nsg *nullStatGenerator) Stats() interface{} {
-	return map[string]interface{}{"type": "null", "count": nsg.count}
+	return map[string]interface{}{"count": nsg.count}
 }
 func (nsg *nullStatGenerator) Close() error { return nil }
