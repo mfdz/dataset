@@ -34,6 +34,18 @@ const (
 	XLSXDataFormat
 )
 
+// IsSupportedFormat checks if a string is a supported data format
+func IsSupportedFormat(s string) bool {
+	if df, err := ParseDataFormatString(s); err == nil {
+		for _, f := range SupportedDataFormats() {
+			if df == f {
+				return true
+			}
+		}
+	}
+	return false
+}
+
 // SupportedDataFormats gives a slice of data formats that are
 // expected to work with this dataset package. As we work through
 // support for different formats, the last step of providing full
@@ -69,17 +81,17 @@ func (f DataFormat) String() string {
 // TODO (b5): trim "." prefix, remove prefixed map keys
 func ParseDataFormatString(s string) (df DataFormat, err error) {
 	df, ok := map[string]DataFormat{
-		"":      UnknownDataFormat,
-		".csv":  CSVDataFormat,
-		"csv":   CSVDataFormat,
-		".json": JSONDataFormat,
-		"json":  JSONDataFormat,
-		".xml":  XMLDataFormat,
-		"xml":   XMLDataFormat,
-		".xlsx": XLSXDataFormat,
-		"xlsx":  XLSXDataFormat,
-		"cbor":  CBORDataFormat,
-		".cbor": CBORDataFormat,
+		"": UnknownDataFormat,
+		// ".csv":  CSVDataFormat,
+		"csv": CSVDataFormat,
+		// ".json": JSONDataFormat,
+		"json": JSONDataFormat,
+		// ".xml":  XMLDataFormat,
+		"xml": XMLDataFormat,
+		// ".xlsx": XLSXDataFormat,
+		"xlsx": XLSXDataFormat,
+		"cbor": CBORDataFormat,
+		// ".cbor": CBORDataFormat,
 	}[s]
 	if !ok {
 		err = fmt.Errorf("invalid data format: `%s`", s)
