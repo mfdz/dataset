@@ -2,10 +2,12 @@ module github.com/qri-io/dataset
 
 go 1.12
 
+replace github.com/qri-io/dataset => /Users/b5/github.com/qri-io/dataset
+
 require (
 	github.com/360EntSecGroup-Skylar/excelize v1.4.1
 	github.com/ghodss/yaml v1.0.0
-	github.com/google/go-cmp v0.2.0
+	github.com/google/go-cmp v0.3.0
 	github.com/ipfs/go-datastore v0.0.5
 	github.com/ipfs/go-log v0.0.1
 	github.com/jinzhu/copier v0.0.0-20180308034124-7e38e58719c3
@@ -14,10 +16,13 @@ require (
 	github.com/multiformats/go-multihash v0.0.5
 	github.com/qri-io/compare v0.1.0
 	github.com/qri-io/dsdiff v0.1.1
+	github.com/qri-io/filter v0.0.0-20190722174243-4024ef58c6c3 // indirect
 	github.com/qri-io/jsonschema v0.1.1
 	github.com/qri-io/qfs v0.1.0
+	github.com/qri-io/qri v0.8.2 // indirect
 	github.com/qri-io/varName v0.1.0
-	github.com/ugorji/go v1.1.4
+	github.com/ugorji/go v1.1.5-pre
+	github.com/ugorji/go/codec v1.1.5-pre
 	github.com/yudai/gojsondiff v1.0.0
 	gopkg.in/yaml.v2 v2.2.2
 )

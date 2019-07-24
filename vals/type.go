@@ -32,6 +32,13 @@ const (
 	TypeArray
 	// TypeBytes is an ordered slice of bytes
 	TypeBytes
+
+	// TypeReader is a stream of bytes
+	TypeReader
+	// TypeIterator is a stream of values
+	TypeIterator
+	// TypeLink is a connection to a foreign value
+	TypeLink
 )
 
 // NumDatatypes is the total count of data types, including unknown type
