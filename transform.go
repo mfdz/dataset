@@ -59,7 +59,7 @@ func (q *Transform) DropDerivedValues() {
 // OpenScriptFile generates a byte stream of script data prioritizing creating an
 // in-place file from ScriptBytes when defined, fetching from the
 // passed-in resolver otherwise
-func (q *Transform) OpenScriptFile(ctx context.Context, resolver qfs.PathResolver) (err error) {
+func (q *Transform) OpenScriptFile(ctx context.Context, resolver qfs.Filesystem) (err error) {
 	if q.ScriptBytes != nil {
 		q.scriptFile = qfs.NewMemfileBytes("transform.star", q.ScriptBytes)
 		return nil

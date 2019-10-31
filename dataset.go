@@ -181,7 +181,7 @@ var (
 // once resolved, the file is set to an internal field, which is
 // accessible via the BodyFile method. separating into two steps
 // decouples loading from access
-func (ds *Dataset) OpenBodyFile(ctx context.Context, resolver qfs.PathResolver) (err error) {
+func (ds *Dataset) OpenBodyFile(ctx context.Context, resolver qfs.Filesystem) (err error) {
 	if ds.Body != nil {
 		// TODO (b5): this needs thought. Ideally we'd be able to delay
 		// decoding of inline data to present a stream of bytes here but that would

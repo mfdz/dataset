@@ -54,7 +54,7 @@ func (v *Viz) DropDerivedValues() {
 // OpenScriptFile generates a byte stream of script data prioritizing creating an
 // in-place file from ScriptBytes when defined, fetching from the
 // passed-in resolver otherwise
-func (v *Viz) OpenScriptFile(ctx context.Context, resolver qfs.PathResolver) (err error) {
+func (v *Viz) OpenScriptFile(ctx context.Context, resolver qfs.Filesystem) (err error) {
 	if v.ScriptBytes != nil {
 		v.scriptFile = qfs.NewMemfileBytes("template.html", v.ScriptBytes)
 		return nil
@@ -78,7 +78,7 @@ func (v *Viz) SetScriptFile(file qfs.File) {
 }
 
 // OpenRenderedFile generates a byte stream of the rendered data
-func (v *Viz) OpenRenderedFile(ctx context.Context, resolver qfs.PathResolver) (err error) {
+func (v *Viz) OpenRenderedFile(ctx context.Context, resolver qfs.Filesystem) (err error) {
 	if v.RenderedPath == "" {
 		// nothing to resolve
 		return nil

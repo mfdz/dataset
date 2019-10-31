@@ -53,7 +53,7 @@ func (r *Readme) DropDerivedValues() {
 }
 
 // InlineScriptFile opens the script file, reads its contents, and assigns it to scriptBytes.
-func (r* Readme) InlineScriptFile(ctx context.Context, resolver qfs.PathResolver) error {
+func (r *Readme) InlineScriptFile(ctx context.Context, resolver qfs.Filesystem) error {
 	if resolver == nil {
 		return nil
 	}
@@ -77,7 +77,7 @@ func (r* Readme) InlineScriptFile(ctx context.Context, resolver qfs.PathResolver
 // OpenScriptFile generates a byte stream of script data prioritizing creating an
 // in-place file from ScriptBytes when defined, fetching from the
 // passed-in resolver otherwise
-func (r *Readme) OpenScriptFile(ctx context.Context, resolver qfs.PathResolver) (err error) {
+func (r *Readme) OpenScriptFile(ctx context.Context, resolver qfs.Filesystem) (err error) {
 	if r.ScriptBytes != nil {
 		r.scriptFile = qfs.NewMemfileBytes("readme.md", r.ScriptBytes)
 		return nil
@@ -101,7 +101,7 @@ func (r *Readme) SetScriptFile(file qfs.File) {
 }
 
 // OpenRenderedFile generates a byte stream of the rendered data
-func (r *Readme) OpenRenderedFile(ctx context.Context, resolver qfs.PathResolver) (err error) {
+func (r *Readme) OpenRenderedFile(ctx context.Context, resolver qfs.Filesystem) (err error) {
 	if r.RenderedPath == "" {
 		// nothing to resolve
 		return nil
